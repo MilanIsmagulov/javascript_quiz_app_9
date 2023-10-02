@@ -98,6 +98,7 @@ function createFields() {
     fullList = [...leftCol, ...rightCol]
 }
 
+
 function dragStart2() {
     dragElem2 = this;
     if (this.parentNode.getAttribute('index') === 'row') {
@@ -162,18 +163,35 @@ function swapItems2(fromIndex, toIndex) {
     fullList[toIndex].appendChild(itemOne);
 }
 
+let answerButton = document.querySelector('#check_button_1')
+let reloadButton = document.querySelector('#check_button_2')
+let nextButton = document.querySelector('#check_button_3')
+reloadButton.addEventListener('click', function(){
+    window.location.reload();
+});
+
+
 function checkAnwser3() {
     fullList.forEach((item, index) => {
         if (item.querySelector('.item3')?.innerText.trim() === undefined) {
             item.classList.add('incorrect')
+            reloadButton.classList.remove('disabled_button')
+            nextButton.classList.remove('disabled_button')
+            answerButton.classList.add('disabled_button')
         } else {
             const itemName = item.querySelector('.item3').innerText.trim();
 
             if (itemName !== anwserArr3[index]) {
                 item.classList.add('incorrect')
+                reloadButton.classList.remove('disabled_button')
+                nextButton.classList.remove('disabled_button')
+                answerButton.classList.add('disabled_button')
             } else {
                 item.classList.remove('incorrect')
                 item.classList.add('correct')
+                reloadButton.classList.remove('disabled_button')
+                nextButton.classList.remove('disabled_button')
+                answerButton.classList.add('disabled_button')
             }
         }
     })
